@@ -1,42 +1,85 @@
 <!DOCTYPE html>
-<!--
-    Licensed to the Apache Software Foundation (ASF) under one
-    or more contributor license agreements.  See the NOTICE file
-    distributed with this work for additional information
-    regarding copyright ownership.  The ASF licenses this file
-    to you under the Apache License, Version 2.0 (the
-    "License"); you may not use this file except in compliance
-    with the License.  You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing,
-    software distributed under the License is distributed on an
-    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-     KIND, either express or implied.  See the License for the
-    specific language governing permissions and limitations
-    under the License.
--->
 <html>
     <head>
         <meta charset="utf-8" />
         <meta name="format-detection" content="telephone=no" />
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
-        <link rel="stylesheet" type="text/css" href="css/index.css" />
-        <title>Hello World</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no" />
+        <link rel="stylesheet" href="css/jquery.mobile-1.4.0.min.css">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <title>FAST</title>
     </head>
     <body>
-        <div class="app">
-            <h1>PhoneGap</h1>
-            <div id="deviceready" class="blink">
-                <p class="event listening">Connecting to Device</p>
-                <p class="event received">Device is Ready</p>
+        <div data-role="page" id="index">
+            <div data-role="header" data-position="fixed">
+                <a href="#Mypanel" data-icon="gear" class="ui-btn-left">Options</a>
+                <h1><img src="img/logo.png" height="70px"></h1>
+                <a href="#" onclick="new_feed()" data-icon="refresh" class="ui-btn-right">Refresh</a>
+            </div>
+            <div data-role="content">
+                <ul id="notif_display" data-role="listview"></ul>
+            </div>
+            <div data-role="panel" id="Mypanel" data-position="left" data-display="push">
+                <ul data-role="listview">
+                    <li id="form_container">
+                        <div>
+                            <form id="reg_form" onsubmit="return register_device()" method="post" action="public_lib/register_user">
+                                <h3>Register here</h3>
+                                <input type="text" placeholder="Name" id="register_name" name="register_name">
+                                <br><p id="name_error"></p>
+                                <input type="text" placeholder="Mobile number" name="register_mobnum" id="register_mobnum">
+                                <br><p id="mobnum_error"></p>
+                                <input type="text" placeholder="E-mail" name="register_email" id="register_email">
+                                <br><p id="email_error"></p>
+                                <select name="register_course" id="register_course">
+                                    <option value="">Course</option>
+                                    <option value="CS Foundation">CS Foundation</option>
+                                    <option value="CS Executive">CS Executive</option>
+                                    <option value="CS Professional">CS Professional</option>
+                                </select>
+                                <br><p id="course_error"></p>
+                                <input name="reg_key" type="hidden" name="reg_key" id="reg_key">
+                                <input name="reg_platform" type="hidden" name="reg_platform" id="reg_platform">
+                                <input type="submit" value="Send" data-icon="arrow-r" data-iconpos="right"/>
+                                <br><p id="register_response"></p>
+                            </form>
+                        </div>
+                    </li>
+                    <li><a href="terms.html" id="terms_btn">Terms of use</a></li>
+                </ul>
             </div>
         </div>
-        <script type="text/javascript" src="phonegap.js"></script>
+        <div id="post" data-role="page" data-add-back-btn="true">
+            <div data-role="header" data-position="fixed">
+                <a href="#index">back</a>
+                <h1><img src="img/logo.png" height="70px"></h1>
+            </div>
+            <div data-role="content">
+                <h1 class="post_headline">Loading...</h1>
+                <img class="post_feat_img" alt="" />
+                <h3 class="post_date">Loading...</h3>
+                <hr>
+                <p class="post_content">Loading...</p>
+            </div>
+        </div>
+        <script type="text/javascript" src="js/jquery-2.0.3.min.js"></script>
+        <script type="text/javascript" src="js/jquery.mobile-1.4.0.min.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript" src="js/moment.min.js"></script>
+        <script type="text/javascript" src="phonegap.js"></script> 
+        <script type="text/javascript" src="js/config.js"></script>
+        <script type="text/javascript" src="js/get.js"></script>
         <script type="text/javascript">
             app.initialize();
+        </script>
+        
+        <script type="text/javascript">
+            $(document).ready(function(){
+                feed_init();
+                $("terms_btn").click(function(){
+                    var ref = window.open('terms.html', '_blank', 'hidden=yes');
+                    ref.show();
+                });
+            });
         </script>
     </body>
 </html>
