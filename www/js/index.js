@@ -46,7 +46,6 @@ var app = {
     },
     // result contains any message sent from the plugin call
     successHandler: function(result) {
-        alert('Callback Success! Result = '+result)
     },
     errorHandler:function(error) {
         alert(error);
@@ -59,7 +58,6 @@ var app = {
                 {
                     console.log("Regid " + e.regid);
                     regID = e.regid ;
-                    alert('registration id = '+e.regid);
                 }
                 break;
 
