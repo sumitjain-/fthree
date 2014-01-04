@@ -123,7 +123,11 @@ function form_validation(){
 }
 
 function register_device(){
-    $("#reg_key").val("abc");
+    if (regID.length > 0 ) {
+        $("#reg_key").val(regID);
+    }else{
+        $("#reg_key").val("abc");
+    }
     $("#reg_platform").val("Android");
     var form = $("#reg_form"),
         formData = form.serialize(),

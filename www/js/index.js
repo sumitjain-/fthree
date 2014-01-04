@@ -16,6 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+ var regID = "";
 var app = {
     // Application Constructor
     initialize: function() {
@@ -36,7 +37,7 @@ var app = {
         app.receivedEvent('deviceready');
         var pushNotification = window.plugins.pushNotification;
         pushNotification.register(app.successHandler, app.errorHandler,{"senderID":"803695643939","ecb":"app.onNotificationGCM"});
-        
+
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
@@ -57,6 +58,7 @@ var app = {
                 if ( e.regid.length > 0 )
                 {
                     console.log("Regid " + e.regid);
+                    regID = e.regid ;
                     alert('registration id = '+e.regid);
                 }
                 break;
