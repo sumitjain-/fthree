@@ -30,7 +30,9 @@ function load_more(){
         for(i = 0 ; i < no_of_notif ; i++ ){
             $('#notif_display').append('<li data-theme="'+current_theme+'"><a class="" id="notif" href="#post" data-transition="slide" onclick="get_post('+data[i].post_id+')"><h4>'+ data[i].post_title +'</h4><p>'+moment(data[i].post_date, "DD-MM-YYYY").format("Do MMM YYYY")+'</p></a></li>');
         }
-        last = data[no_of_notif - 1].post_id;
+        if (data.length) {
+            last = data[no_of_notif - 1].post_id;
+        };
         console.log("first = "+first+" , last = "+last);
         if(last == 1 ){
             $('#notif_display').append('<li data-theme="b"><h1>No more posts.. </h1></li>');
