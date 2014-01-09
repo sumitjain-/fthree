@@ -32,7 +32,7 @@ function load_more(){
         }
         last = data[no_of_notif - 1].post_id;
         console.log("first = "+first+" , last = "+last);
-        if(last == 2 ){
+        if(last == 1 ){
             $('#notif_display').append('<li data-theme="b"><h1>No more posts.. </h1></li>');
         }else{
             $('#notif_display').append('<li id="loadMore" data-theme="'+current_theme+'" data-inset="true"><a href="#index" onclick="load_more()"><h1>Load more</h1></a></li>');
